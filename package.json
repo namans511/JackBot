@@ -1,0 +1,21 @@
+{
+  "name": "jackbot",
+  "version": "1.0.0",
+  "description": "telegram wrapper for jackbot",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "telegram",
+    "chatbot"
+  ],
+  "author": "Naman Srivastava",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
+    "node-telegram-bot-api": "^0.51.0"
+  }
+}
