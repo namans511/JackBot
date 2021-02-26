@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
   bot = new TelegramBot(TOKEN, options);
   const herokuUrl = "https://jack-bot511.herokuapp.com:443";
   // console.log("heroku url", herokuUrl);
-  bot.setWebHook(`${url}/bot${TOKEN}`);
+  bot.setWebHook(`${herokuUrl}/bot${TOKEN}`);
 } else {
   bot = new TelegramBot(TOKEN, { polling: true });
 }
