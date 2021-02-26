@@ -2,16 +2,21 @@ require("dotenv").config();
 const fetch = require("node-fetch");
 const TelegramBot = require("node-telegram-bot-api");
 
-token = process.env.BOT_TOKEN;
+TOKEN = process.env.BOT_TOKEN;
 
 // const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 if (process.env.NODE_ENV === "production") {
-  bot = new TelegramBot(token);
-  const herUrl = "https://jack-bot511.herokuapp.com/" + bot.token;
-  console.log("heroku url", herUrl);
-  bot.setWebHook(herUrl);
+  const options = {
+    webHook: {
+      port: process.env.PORT,
+    },
+  };
+  bot = new TelegramBot(TOKEN, options);
+  const herokuUrl = "https://jack-bot511.herokuapp.com:443";
+  // console.log("heroku url", herokuUrl);
+  bot.setWebHook(`${url}/bot${TOKEN}`);
 } else {
-  bot = new TelegramBot(token, { polling: true });
+  bot = new TelegramBot(TOKEN, { polling: true });
 }
 
 bot.onText(/\/echo (.+)/, (msg, match) => {
