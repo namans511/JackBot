@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const TelegramBot = require("node-telegram-bot-api");
 
 TOKEN = process.env.BOT_TOKEN;
+const names = util.names();
 
 if (process.env.NODE_ENV === "production") {
   const options = {
@@ -34,12 +35,13 @@ bot.onText(/\/start/, (msg, match) => {
 
 bot.on("message", async (msg) => {
   try {
-    // console.log(msg);
+    // console.log(util.names());
     const chatId = msg.chat.id;
     if (msg.text.startsWith("/")) return;
 
     reply = await util.getResponse(msg);
-    bot.sendMessage(chatId, reply);
+    const filteredResponse = util.filter(reply, names);
+    bot.sendMessage(chatId, filteredResponse);
     util.saveChat(msg, reply);
   } catch (error) {
     console.error(error);

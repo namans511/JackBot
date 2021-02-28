@@ -21,7 +21,8 @@ exports.getResponse = async (msg) => {
   } else {
     const test = await fetch("https://jsonplaceholder.typicode.com/todos/1");
     const testJson = await test.json();
-    reply = testJson.title;
+    // reply = testJson.title;
+    reply = msg.text;
   }
 
   return reply;
@@ -46,4 +47,25 @@ exports.saveChat = (msg, reply) => {
     .catch((error) => {
       console.error(error);
     });
+};
+
+exports.names = () => {
+  let names = process.env.NAMES;
+  var reg = new RegExp(names, "gi");
+  return reg;
+  let namesReg = [reg];
+  // var reg;
+  // names.forEach((name) => {
+  //   reg = new RegExp(name, "gi");
+  //   namesReg.push(reg);
+  // });
+  return namesReg;
+};
+
+exports.filter = (res, names) => {
+  // names.forEach((name) => {
+  //   res = res.replace(name, "\b");
+  // });
+  res = res.replace(names, "\b");
+  return res;
 };
